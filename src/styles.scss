@@ -1,0 +1,29 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+/*
+@import "~bootstrap/dist/css/bootstrap.min.css";
+*/
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,400,700|Open+Sans:100,400,700');
+
+$primary-color: #2110C2;
+$darker-primary: #170B84;
+$accent-orange: #EE7101;
+$accent-green: #2db72c;
+
+body {
+  background-color: $primary-color;
+  height: 100%;
+  overflow-x: hidden;
+  h1, h2, h3, h4 {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+  }
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+}
+.notLogin{
+    background-color: white;
+}
+
+.cancel-button{
+  display: none !important;
+}

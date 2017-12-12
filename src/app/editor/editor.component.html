@@ -1,0 +1,31 @@
+<div *ngIf="state == 0 ">
+  <div class="row retailer-select-row" >
+    <div class="col-md" *ngIf="currentUser.retailers.length > 1">
+      <app-retailer-list (onSelected)="onSelected($event)" [retailers]="currentUser.retailers"></app-retailer-list>
+    </div>
+    <div class="col-md" [ngClass]="{'no-retailer-list': currentUser.retailers.length <=1}">
+      <app-shop-list [retailer]="selectedRetailer" (onChecked)="onShopChecked($event)"></app-shop-list>
+    </div>
+  </div>
+
+  <button mat-raised-button class="back-button" routerLink="'/'"
+          (click)="nextStep()">Back
+  </button>
+  <button mat-raised-button class="next-button" [disabled]="selectedShops.length===0" *ngIf="selectedRetailer"
+          (click)="nextStep()">Next
+  </button>
+</div>
+<div *ngIf="state == 1">
+  <h2 style="    margin-top: 50px;
+    text-align: center;">Create campaign for {{selectedRetailer.name}}</h2>
+  <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <app-editor-form [campaign]="tempCampaign" (onCreate)="onCampaignCreate()" (onChange)="onFormChange()"></app-editor-form>
+      </div>
+      <div class="col-md-4">
+        <app-preview [campaign]="tempCampaign" [state]="0"></app-preview>
+      </div>
+        <div class="col-md-2"></div>
+  </div>
+</div>

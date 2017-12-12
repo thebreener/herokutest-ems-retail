@@ -1,0 +1,27 @@
+@import '../../styles';
+
+#nav {
+  background-color: $primary-color;
+  box-shadow: rgba(0, 0, 0, 0.15) 2px 4px 10px;
+}
+.logout-btn {
+  background-color: $darker-primary;
+
+    color: #ffffff !important;
+  a:hover{
+    text-decoration: none !important;
+  }
+};
+
+#nav{
+  width:100%;
+}
+.row{
+  margin: 0;
+}
+
+.navbar-brand{
+  img{
+    max-width: 200px;
+  }
+}

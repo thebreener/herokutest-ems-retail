@@ -1,0 +1,33 @@
+@import "../../styles";
+
+.back-button{
+  background-color: $accent-orange;
+  color: #ffffff;
+  float: left;
+  margin-top: 20px;
+  margin-left: 100px;
+}
+
+.next-button{
+  background-color: $primary-color;
+  color: #ffffff;
+  float: right;
+  margin-top: 20px;
+  margin-right: 100px;
+}
+.next-button:disabled{
+
+    background: grey;
+    color: darkgray;
+
+}
+.retailer-select-row{
+  margin-top: 50px;
+  h3{
+    text-align: center;
+  }
+}
+
+.no-retailer-list{
+  margin-left: 100px;
+}

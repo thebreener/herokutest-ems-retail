@@ -1,0 +1,32 @@
+<mat-card class="editor-form">
+  <h3>Campaign content</h3>
+  <mat-card-content>
+    <mat-form-field>
+      <input matInput placeholder="Title" [(ngModel)]="campaign.title">
+    </mat-form-field>
+    <mat-form-field class="description-wrapper">
+      <textarea matInput placeholder="Description" [(ngModel)]="campaign.description"></textarea>
+    </mat-form-field>
+    <mat-form-field class="price-wrapper">
+      <input matInput placeholder="Price" type="number" class="price" [(ngModel)]="campaign.price">
+      <span matSuffix>kr.</span>
+    </mat-form-field>
+    <mat-form-field class="price-before-wrapper">
+      <input matInput placeholder="Price before" type="number" class="price-before" [(ngModel)]="campaign.priceBefore">
+      <span matSuffix>kr.</span>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="http://" [(ngModel)]="campaign.image">
+      <mat-label>Image Url</mat-label>
+    </mat-form-field>
+    <app-daterangepicker (onSelect)="selectedDate($event)" (selected)="selectedDate($event)">Add period</app-daterangepicker>
+    <button (click)="createCampaign()" mat-raised-button class="save-campaign-button"  [disabled]="creating">
+      Save campaign
+      <mat-spinner *ngIf="creating"
+        [color]="accent"
+        [diameter]="32">
+      </mat-spinner>
+    </button>
+
+  </mat-card-content>
+</mat-card>

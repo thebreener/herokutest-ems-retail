@@ -1,0 +1,10 @@
+<mat-card class="retailer-list">
+  <h3>Select Retailer</h3>
+  <mat-card-content>
+    <mat-grid-list cols="3" gutterSize="10" class="retailer-icon-list" >
+      <mat-grid-tile *ngFor="let retailer of retailers" class="retailer-icon"  style="cursor: pointer;" (click)="selectRetailer(retailer)">
+        {{retailer.name}}
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>

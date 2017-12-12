@@ -1,0 +1,33 @@
+<div *ngIf="state==0|| !state">
+
+  <div id="large-preview">
+    <div id="preview-phone-wrapper">
+      <img [src]="campaign.image"/>
+      <div id="preview-phone-inner">
+        <div [innerHtml]="campaign.title" style="font-size: 1rem; font-weight: 700"></div>
+
+        <div class="text-muted text-small" *ngIf="campaign.priceBefore">Før: <span
+          [innerHtml]="campaign.priceBefore"></span>
+        </div>
+        <span class="price-container" *ngIf="campaign.price">Pris: <strong><span [innerHtml]="campaign.price"></span> kr.</strong> <span
+          *ngIf="campaign.priceBefore">Spar: <strong>{{campaign.priceBefore - campaign.price}} kr.</strong></span>
+
+        <div id="preview-phone-description" *ngIf="campaign.description" [innerHtml]="campaign.description">
+
+
+        </div></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<mat-card *ngIf="state==1">
+  <mat-card-content id="small-preview-card">
+    <img mat-card-image [src]="campaign.image"/>
+    <h2>{{campaign.title}}</h2>
+  </mat-card-content>
+  <mat-card-actions>
+    <button (click)="delete()" mat-button>Delete</button>
+  </mat-card-actions>
+</mat-card>

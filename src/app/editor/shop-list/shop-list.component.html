@@ -1,0 +1,19 @@
+<mat-card class="shop-list">
+  <h3>Select Shops</h3>
+  <mat-card-content>
+    <div *ngIf="retailer">
+      <mat-nav-list>
+        <mat-list-item *ngFor="let shop of retailer.shops">
+          <label class="form-check-label" style="width: 100%; padding: 10px">
+            <input class="form-check-input" type="checkbox" value=""
+                   (change)="toggleChecked(shop)">{{shop.name}}
+          </label>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+
+    <div *ngIf="!retailer" style="text-align: center; color: #999999; margin-top: 160px">
+      Select a Retailer
+    </div>
+  </mat-card-content>
+</mat-card>

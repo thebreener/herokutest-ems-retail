@@ -1,0 +1,33 @@
+@import '../../styles';
+
+app-navbar {
+  display: none;
+}
+
+.login-form {
+  width: 350px;
+  margin-top: 10%;
+  margin-right: auto;
+  margin-left: auto;
+  background: white;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+#login-button{
+  margin: auto !important;
+  display: block !important;
+  color: white;
+  background-color: $primary-color;
+}
+
+login-form {
+  height: 100%;
+  width: 100%;
+}
+
+.login-header{
+  text-align: center;
+  /* margin: auto; */
+  display: block;
+}

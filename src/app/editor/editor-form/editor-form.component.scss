@@ -1,0 +1,19 @@
+@import "/../../../styles";
+.editor-form{
+  margin: auto;
+  top: 40px;
+  width: 442px;
+  .description-wrapper{
+    width: 209px;
+  }
+  .price-wrapper{
+    width: 180px;
+  }
+  .price-before-wrapper{
+    width: 209px;
+  }
+  .save-campaign-button{
+    background: $accent-green;
+    color: white;
+  }
+}

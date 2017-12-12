@@ -1,0 +1,16 @@
+@import "../../styles";
+#new-campaing-fab{
+  width: 80px;
+  height: 80px;
+  font-size: 30px;
+  text-align: center;
+  line-height: 30px;
+  background-color: $primary-color;
+}
+
+#new-campaign-card{
+  cursor: pointer;
+  width: 280px;
+  text-align: center;
+  line-height: 230px;
+}

@@ -1,0 +1,41 @@
+#large-preview {
+  position: relative;
+  background-image: url('/assets/images/preview-phone.png');
+  background-size: cover;
+  width: 197px;
+  height: 400px;
+  margin: auto;
+  #preview-phone-wrapper {
+    position: absolute;
+    top: 39px;
+    left: 11px;
+    right: 11px;
+    bottom: 46px;
+    overflow: auto;
+    img {
+      width: 100%;
+    }
+    #preview-phone-inner {
+      margin: 10px 10px;
+      .text-small{
+        font-size: 0.6rem;
+      }
+      .price-container{
+        font-size: 0.7rem;
+      }
+      #preview-phone-description {
+        margin-top: 15px;
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+#small-preview-card {
+  img {
+
+    height: 180px;
+
+  }
+}
+

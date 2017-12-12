@@ -1,13 +1,22 @@
-import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod, XHRBackend, RequestOptions } from '@angular/http';
-import { MockBackend} from '@angular/http/testing';
-import { USERS } from '../mock-users';
+import {
+  Http,
+  BaseRequestOptions,
+  Response,
+  ResponseOptions,
+  RequestMethod,
+  XHRBackend,
+  RequestOptions
+} from '@angular/http';
+import {MockBackend} from '@angular/http/testing';
+import {USERS} from '../mock-users';
 import {Campaign} from '../_models/campaign';
 import {User} from '../_models/user';
+
 export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOptions, realBackend: XHRBackend) {
   // array in local storage for registered users
   // let users: any[] = JSON.parse(localStorage.getItem('users')) || [];
   let users = [];
-  for(let i in USERS){
+  for (let i in USERS) {
     users.push(USERS[i]);
   }
   // configure fake backend
@@ -45,10 +54,10 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
       if (connection.request.url.endsWith('/api/users') && connection.request.method === RequestMethod.Get) {
         // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
         if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-          connection.mockRespond(new Response(new ResponseOptions({ status: 200, body: users })));
+          connection.mockRespond(new Response(new ResponseOptions({status: 200, body: users})));
         } else {
           // return 401 not authorised if token is null or invalid
-          connection.mockRespond(new Response(new ResponseOptions({ status: 401 })));
+          connection.mockRespond(new Response(new ResponseOptions({status: 401})));
         }
 
         return;
@@ -61,14 +70,16 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
           // find user by id in users array
           let urlParts = connection.request.url.split('/');
           let id = parseInt(urlParts[urlParts.length - 1]);
-          let matchedUsers = users.filter(user => { return user.id === id; });
+          let matchedUsers = users.filter(user => {
+            return user.id === id;
+          });
           let user = matchedUsers.length ? matchedUsers[0] : null;
 
           // respond 200 OK with user
-          connection.mockRespond(new Response(new ResponseOptions({ status: 200, body: user })));
+          connection.mockRespond(new Response(new ResponseOptions({status: 200, body: user})));
         } else {
           // return 401 not authorised if token is null or invalid
-          connection.mockRespond(new Response(new ResponseOptions({ status: 401 })));
+          connection.mockRespond(new Response(new ResponseOptions({status: 401})));
         }
 
         return;
@@ -80,7 +91,9 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
         let newUser = JSON.parse(connection.request.getBody());
 
         // validation
-        let duplicateUser = users.filter(user => { return user.username === newUser.username; }).length;
+        let duplicateUser = users.filter(user => {
+          return user.username === newUser.username;
+        }).length;
         if (duplicateUser) {
           return connection.mockError(new Error('Username "' + newUser.username + '" is already taken'));
         }
@@ -91,7 +104,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
         localStorage.setItem('users', JSON.stringify(users));
 
         // respond 200 OK
-        connection.mockRespond(new Response(new ResponseOptions({ status: 200 })));
+        connection.mockRespond(new Response(new ResponseOptions({status: 200})));
 
         return;
       }
@@ -114,10 +127,10 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
           }
 
           // respond 200 OK
-          connection.mockRespond(new Response(new ResponseOptions({ status: 200 })));
+          connection.mockRespond(new Response(new ResponseOptions({status: 200})));
         } else {
           // return 401 not authorised if token is null or invalid
-          connection.mockRespond(new Response(new ResponseOptions({ status: 401 })));
+          connection.mockRespond(new Response(new ResponseOptions({status: 401})));
         }
 
         return;
@@ -125,13 +138,13 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
 
       // create campaign
       if (connection.request.url.endsWith('/api/campaignCreate') && connection.request.method === RequestMethod.Post) {
-        let newCampaign:Campaign = JSON.parse(connection.request.getBody());
+        let newCampaign: Campaign = JSON.parse(connection.request.getBody());
 
-        let user:User = JSON.parse(localStorage.getItem('currentUser'));
-        let maxId:number = 0;
+        let user: User = JSON.parse(localStorage.getItem('currentUser'));
+        let maxId: number = 0;
 
-        for(let i:number = 0; i<user.campaigns.length; i++ ){
-          if(user.campaigns[i].id>maxId){
+        for (let i: number = 0; i < user.campaigns.length; i++) {
+          if (user.campaigns[i].id > maxId) {
             maxId = user.campaigns[i].id;
           }
         }
@@ -139,17 +152,17 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
         user.campaigns.push(newCampaign);
         localStorage.setItem('currentUser', JSON.stringify(user));
 
-        connection.mockRespond(new Response(new ResponseOptions({ status: 200 })));
+        connection.mockRespond(new Response(new ResponseOptions({status: 200})));
 
         return;
       }
 
       // edit campaign
       if (connection.request.url.endsWith('/api/campaignEdit') && connection.request.method === RequestMethod.Put) {
-        let newCampaign:Campaign = JSON.parse(connection.request.getBody());
-        let user:User = JSON.parse(localStorage.getItem('currentUser'));
-        for(let i:number = 0; i<user.campaigns.length; i++){
-          if(user.campaigns[i].id == newCampaign.id){
+        let newCampaign: Campaign = JSON.parse(connection.request.getBody());
+        let user: User = JSON.parse(localStorage.getItem('currentUser'));
+        for (let i: number = 0; i < user.campaigns.length; i++) {
+          if (user.campaigns[i].id == newCampaign.id) {
             user.campaigns[i] = newCampaign;
           }
         }
@@ -158,7 +171,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
         localStorage.setItem('currentUser', JSON.stringify(user));
 
         // respond 200 OK
-        connection.mockRespond(new Response(new ResponseOptions({ status: 200 })));
+        connection.mockRespond(new Response(new ResponseOptions({status: 200})));
 
         return;
       }
@@ -167,10 +180,10 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
       if (connection.request.url.match(/\/api\/campaignDelete\/\d+$/) && connection.request.method === RequestMethod.Delete) {
         let urlParts = connection.request.url.split('/');
         let id = parseInt(urlParts[urlParts.length - 1]);
-        let user:User = JSON.parse(localStorage.getItem('currentUser'));
-        for(let i:number = 0; i<user.campaigns.length; i++){
-          if(user.campaigns[i].id == id){
-            user.campaigns.splice(i,1);
+        let user: User = JSON.parse(localStorage.getItem('currentUser'));
+        for (let i: number = 0; i < user.campaigns.length; i++) {
+          if (user.campaigns[i].id == id) {
+            user.campaigns.splice(i, 1);
             i--;
           }
         }
@@ -179,7 +192,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
         localStorage.setItem('currentUser', JSON.stringify(user));
 
         // respond 200 OK
-        connection.mockRespond(new Response(new ResponseOptions({ status: 200 })));
+        connection.mockRespond(new Response(new ResponseOptions({status: 200})));
 
         return;
       }

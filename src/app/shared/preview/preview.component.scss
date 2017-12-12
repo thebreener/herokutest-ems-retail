@@ -1,3 +1,4 @@
+@import '../../../styles';
 #large-preview {
   position: relative;
   background-image: url('/assets/images/preview-phone.png');
@@ -31,11 +32,22 @@
   }
 }
 
-#small-preview-card {
+.image-container {
+  text-align: center;
   img {
-
-    height: 180px;
-
+    margin: auto;
+    width: auto;
+    height: 120px;
+  }
+}
+.preview-cards{
+  height: 277px;
+  width: 280px;
+  button{
+    margin: auto;
+    display: block;
+    background: $accent-orange;
+    color: #ffff;
   }
 }
 

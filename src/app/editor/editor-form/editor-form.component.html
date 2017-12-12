@@ -21,10 +21,10 @@
     </mat-form-field>
     <app-daterangepicker (onSelect)="selectedDate($event)" (selected)="selectedDate($event)">Add period</app-daterangepicker>
     <button (click)="createCampaign()" mat-raised-button class="save-campaign-button"  [disabled]="creating">
-      Save campaign
+      <span *ngIf="!creating">Save campaign</span>
       <mat-spinner *ngIf="creating"
-        [color]="accent"
-        [diameter]="32">
+        [diameter]="25"
+      style="display: inline-block; color: #ffffff !important;">
       </mat-spinner>
     </button>
 

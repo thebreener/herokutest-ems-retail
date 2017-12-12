@@ -1,4 +1,6 @@
-<mat-grid-list cols="4" gutterSize="20">
+<h2>Campaign overview for - {{currentUser.retailer}}</h2>
+
+<mat-grid-list cols="4" style="width: 80%; margin: auto">
   <mat-grid-tile>
     <mat-card id="new-campaign-card">
       <button id="new-campaing-fab"  [routerLink]="'/editor'" mat-fab>+</button>

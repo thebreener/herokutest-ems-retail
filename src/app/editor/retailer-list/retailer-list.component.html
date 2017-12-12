@@ -1,9 +1,10 @@
 <mat-card class="retailer-list">
   <h3>Select Retailer</h3>
   <mat-card-content>
-    <mat-grid-list cols="3" gutterSize="10" class="retailer-icon-list" >
-      <mat-grid-tile *ngFor="let retailer of retailers" class="retailer-icon"  style="cursor: pointer;" (click)="selectRetailer(retailer)">
-        {{retailer.name}}
+    <mat-grid-list cols="3" gutterSize="10" class="retailer-icon-list" rowHeight="150px">
+      <mat-grid-tile *ngFor="let retailer of retailers, let i " class="retailer-icon"  style="cursor: pointer; width: 200px !important;" (click)="selectRetailer(retailer); activeIndex = i"
+      [ngClass]="{ clicked : activeIndex === i }" >
+        <h5>{{retailer.name}}</h5>
       </mat-grid-tile>
     </mat-grid-list>
   </mat-card-content>

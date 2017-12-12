@@ -6,7 +6,7 @@ export class Campaign {
   id: number;
   image: string;
   title: string;
-  price: number;
+  price?: number;
   description?: string;
   priceBefore?: number;
   startDate?: Moment;

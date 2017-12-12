@@ -1,21 +1,27 @@
+@import '../../../styles';
 .retailer-icon{
 /*  width: 60px;
   height: 60px;*/
+  font-weight: 700;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-  background: burlywood;
-  :hover{
-    border: #2110C2 solid 10px;
-  }
+  background: #ffffff;
+  border: 4px #999999 solid;
+  transition: border 0.5s;
+  -webkit-transition: border 0.5s; /* Safari 3.1 to 6.0 */
+}
+.clicked{
+
+  border: 4px $accent-green solid;
 }
 h3{
   text-align: center;
 }
 .retailer-list{
-  margin-left: 100px;
+  padding-left: 10%;
+  padding-right: 10%;
+  margin-left: 200px;
   height: 450px;
-.retailer-icon-list{
-  margin: 20px 80px 80px;
-}
+
 }

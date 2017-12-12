@@ -11,23 +11,28 @@
         </div>
         <span class="price-container" *ngIf="campaign.price">Pris: <strong><span [innerHtml]="campaign.price"></span> kr.</strong> <span
           *ngIf="campaign.priceBefore">Spar: <strong>{{campaign.priceBefore - campaign.price}} kr.</strong></span>
-
+        </span>
         <div id="preview-phone-description" *ngIf="campaign.description" [innerHtml]="campaign.description">
-
-
-        </div></span>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 
-<mat-card *ngIf="state==1">
+<mat-card *ngIf="state==1" class="preview-cards">
+  <mat-card-header>
+    <mat-card-title>
+      {{campaign.title}} - {{campaign.retailer.name}}
+    </mat-card-title>
+  </mat-card-header>
   <mat-card-content id="small-preview-card">
-    <img mat-card-image [src]="campaign.image"/>
-    <h2>{{campaign.title}}</h2>
+    <div class="image-container">
+      <img mat-card-image *ngIf="campaign.image" [src]="campaign.image" class="img-fluid"/>
+      <img mat-card-image *ngIf="!campaign.image" [src]="'./assets/images/placeholder.png'" class="img-fluid"/>
+    </div>
   </mat-card-content>
   <mat-card-actions>
-    <button (click)="delete()" mat-button>Delete</button>
+    <button (click)="delete()" mat-raised-button>Delete</button>
   </mat-card-actions>
 </mat-card>
